@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="container py-4 my-1">
+    <div class="top-bar bg-info px-5 py-1">
+        <h1>
+            Forum
+        </h1>
+        
+    </div>
+    <div class="main bg-light px-5">
+        <div class="header">
+          <h3 class="title pt-3">
+           {{thread.title}}
+          </h4>
+          {% if thread.content %}
+          <br>
+          <div class="fs-5">
+            {{thread.content}}
+          </div>
+          {% endif %}
+          <div class="d-flex text-muted fst-italic">
+              <p><small>
+                {{thread.timestamp|timesince}} ago
+              </small></p>
+              <p class="mx-3"><small>
+                {{thread.discussion_set.all.count}} comments
+              </small></p>
+          </div>
+        </div>
+        {% if request.user.is_authenticated %}
+        <div class="textspace">
+          <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class='btn btn-info' type='submit'>Post comment</button>
+          </form>
+        </div>
+        {% else %}
+            <a href="{% url 'account_login' %}?next={{request.path}}" class="btn btn-secondary btn-block">Login to comment</a>
+        {% endif %}
+        <div class="mt-5">
+          {% for comment in thread.discussion_set.all %} 
+          <div class="comment-content">
+            {{comment.content}}
+          </div>
+          <div class="d-flex text-muted fst-italic small">
+            <p class="user">
+              {{comment.author}}
+            </p>
+            <p class="mx-3">
+             {{comment.timestamp}}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+    </div>
+  </div>
+{% endblock %}

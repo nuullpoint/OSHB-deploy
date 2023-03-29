@@ -1,0 +1,280 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block content %}
+
+  {# ------ Showcase who we are --------- #}
+  <section class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start vh-100">
+    <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between">
+            <div>
+                <h1>Welcome to<span class="text-warning"> Open Source BookHub </span></h1>
+                <p class="lead my-4">
+                  Explore a world of knowledge, discovery, and leisure with our platform, where we cater to all your reading needs. Access thousands of resources of diverse genres and post a blog if you want. All for free!
+                </p>
+                <div class="btn btn-lg d-inline-flex">
+                  <a href="{% url 'file-list' %}" class="btn btn-warning mx-3 px-3">Read a book</a>
+
+                  <a href="{% url 'blogs' %}" class="btn btn-info mx-3 px-3">Checkout the blog</a>
+                </div>
+            </div>
+            <link rel="stylesheet" href="">
+            <img class="img-fluid w-50 d-md-block pt-5" src="{% static 'img/OSBH-ART-cleaned.png' %}" alt="">
+        </div>
+    </div>
+</section>
+
+{# ----------- section for sharing for visitor------------- #}
+
+<section class="bg-info text-light p-5">
+    <div class="container">
+        <div class="d-md-flex justify-content-center align-items-center">
+          <div>
+            <h3 class="mb-3 mb-md-0 me-5">Wanna share your favourite book with the world?</h3>
+          </div>
+          <div>
+              {% if user.is_authenticated %}
+              <a href="{% url 'file-upload' %}" class="btn btn-warning btn-lg">Go ahead</a>
+              {% else %}
+              <a class="btn btn-light btn-lg" href="{% url 'account_signup' %}?next={{request.path}}">Create an account</a>
+            {% endif %}
+          </div>
+        </div>
+    </div>
+</section>
+
+
+{# ---------- Collaborate Section -------------- #}
+<section id="collaborate" class="p-5">
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-md">
+                <img src="{% static 'img/collaboration2.svg' %}" class="img-fluid" alt="">
+            </div>
+            <div class="col-md p-5">
+                <h2>Collaborate with us</h2>
+                <div class="short-text">
+                    <p class="lead">
+                        Hey there book lovers and tech enthusiasts! Are you looking for an opportunity to use your passions or skills to make a difference in the world of literature? Look no further than our <span class="text-info h5">Open Source BookHub </span > project! We are a group of passionate developers dedicated to creating a platform for readers to write, connect, discuss, and share their favorite books.
+                    </p>
+                    <a class="btn btn-light mt-3 me-3" data-bs-toggle="collapse" href="#long-text" role="button" aria-expanded="false" aria-controls="long-text">
+                        Read More
+                    </a>
+                    <a href="{% url 'contact_us' %}" class="btn btn-info mt-3"><i class="bi bi-chevron-right"></i> Reach Out</a>
+                    </div>
+
+                    <div class="collapse mt-3 ms-3" id="long-text">
+                        <p>
+                            We believe that everyone should have access to great literature, regardless of their location or financial situation and by contributing to our project, you will be helping to make this vision a reality.
+                            Developers, whether experienced or just starting out, if there is something you can help us do better, please, let us know.
+                            We value diversity and welcome contributions from people of all backgrounds and skill levels. So if you have a love for books and a desire to make a positive impact on the world, pitch in today!
+                        </p>
+                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ---------- Forum -------------- #}
+<section id="forum" class="p-5 bg-dark text-light">
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-md p-5">
+                <h2>Checkout the forum</h2>
+                <p class="lead">
+                     Our forum is the perfect place to connect with like-minds from around the world. Share your thoughts, ask questions, and engage in lively discussions on all things books, literature or any trending topic of choice
+                </p>
+                <p>
+                    If you are looking for a community where you can share your passion for any topic or books and connect with others of like mind, Look no further than our forum section! With a variety of topics to explore, there's always something new to discover.
+                    <br>
+                    Plus, our community from allover the world is always eager to hear your thoughts and opinions.
+                </p>
+                <a href="{% url 'forum' %}" class="btn btn-light mt-3"><i class="bi bi-chevron-right"></i> Join the conversation</a>
+            </div>
+            <div class="col-md">
+                <img src="{% static 'img/onlineconnection.svg' %}" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ---------- FAQ Accordion -------------- #}
+
+<section id="FAQS" class="p-5 text-dark">
+    <div class="container">
+        <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+        <div class="accordion accordion-flush" id="faqs">
+            {# --------Item 1-------- #}
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqs-one" aria-expanded="false" aria-controls="flush-collapseOne">
+                  Who OSBH aims to serve
+                </button>
+              </h2>
+              <div id="faqs-one" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#faqs">
+                <div class="accordion-body">We aim to reach the whole world and people from all walks of life, whether they be students, educators, professionals, researchers, passionate or leisure readers .</div>
+              </div>
+            </div>
+            {# --------Item 2-------- #}
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqs-two" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Some problems OSBH intend to solve 
+                  </button>
+                </h2>
+                <div id="faqs-two" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#faqs">
+                  <div class="accordion-body">
+                    <ul>
+                        <li>
+                            <h5>Cost</h5>
+                            <p>
+                                OS|BH can provide free access to a wide range of materials on a variety of topics, which can help to reduce financial barriers to learning and exploration. One of the primary problems that OS|BH aims to solve the high cost of educational resources, which can be a significant barrier for individuals and institutions with limited financial resources. Thus, it will engender access to information and educational resources by providing free and open access to a vast collection of digital books, articles, tutorials, journals, and other learning materials.</p>
+                                <p>Also, traditional books and resources related to hobbies and passions can be expensive, which can limit access to these materials for people with limited financial resources. We hope that this makes it easier to engage in leisure readings or studies. 
+                            </p>
+                        </li>
+                        <li>
+                            <h5>Limited Access</h5>
+                            <P>
+                                People who are interested in niche topics or hobbies may struggle to find relevant materials in traditional libraries or bookstores. Our Open Source E-library can provide access to a wide range of materials on these topics, regardless of their popularity or mainstream appeal.
+                            </P>
+                        </li>
+                        <li>
+                            <h5>Geographic Constraints</h5>
+                            <P>
+                                People who live in remote or rural areas may struggle to access materials related to their interests or hobbies. OS|BH can provide access to materials regardless of geographic location, as long as the individual has access to the internet.
+                            </P>
+                        </li>
+                        <li>
+                            <h5>Outdated Materials</h5>
+                            <P>
+                                Some books or other resources related to hobbies or passions may be out of print or otherwise unavailable in traditional libraries or bookstores. OS|BH can provide access to materials that may be difficult or impossible to find elsewhere, helping to preserve knowledge and learning related to niche topics
+                            </P>
+                        </li>
+                        <li>
+                            <P>
+                                Overall, OSBH can be a valuable resource for people who are interested in learning more about niche topics or pursuing hobbies and passions, providing access to a wide range of materials regardless of geographic location, financial resources, or language barriers.
+                            </P>
+                        </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              {# --------Item 3-------- #}
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqs-three" aria-expanded="false" aria-controls="flush-collapseOne">
+                    What other services does OSBH offer
+                  </button>
+                </h2>
+                <div id="faqs-three" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#faqs">
+                  <div class="accordion-body">OSBH has a blog section, forum, and tutorials section for users to engage with</div>
+                </div>
+            </div>
+            {# --------Item 4-------- #}
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqs-four" aria-expanded="false" aria-controls="flush-collapseOne">
+                    How do I sign up
+                  </button>
+                </h2>
+                <div id="faqs-four" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#faqs">
+                  <div class="accordion-body">Follow this <a href="{% url 'account_signup' %}?next={{request.path}}" class="text-info">link</a>  to create an account so as to enjoy the full benefits as a user</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# --------- Founding Devs ------------- #}
+<section id="developers" class="p-5 bg-info">
+    <h2 class="text-center text-white">
+        The Founding Developers
+    </h2>
+    <p class="lead text-center text-white mb-5">
+        Our founding developers all have years of learning and building, using emerging and cutting-edge tech tools. They are a trio of creative, passionate and solution-driven go-getters with humanity at heart.
+    </p>
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card bg-light">
+                <div class="card-body text-center">
+                    <img src="{% static 'img/guys/Philip3.png' %}"   alt="" class="rounded-circle mb-3 w-50">
+                    <h3 class="card-title mb-3">
+                        Philip
+                    </h3>
+                    <p class="card-text">
+                        Meet our brilliant software engineer! With a keen interest in the inner workings of highly efficient systems, they're constantly creating innovative tools that make life easier for users. And with a passion for cloud security, they bring a unique perspective to every project.
+                    </p>
+                    <a target="_blank" href="https://twitter.com/_Ukanwoke"><i class="bi bi-twitter text-dark mx-1"></i></a>
+                    <a target="_blank" href="https://www.linkedin.com/in/philip-ukanwoke-81a611209/"><i class="bi bi-linkedin text-dark mx-1"></i></a>
+                    <a target="_blank" href="https://github.com/Kaditcuy"><i class="bi bi-github text-dark mx-1"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card bg-light">
+                <div class="card-body text-center">
+                    <img src="{% static 'img/guys/Davidson3.png' %}" alt="" class="rounded-circle mb-3 w-50">
+                    <h3 class="card-title mb-3">
+                        Davidson
+                    </h3>
+                    <p class="card-text">
+                        Introducing our vibrant software engineer! With a Master's in computer engineering and a background in networking, they're a pro at finding quick solutions to complex problems. And with their upbeat personality, they bring a positive energy to every project they work on.
+                    </p>
+                    <a target="_blank" href="https://twitter.com/ROTEXXXX"><i class="bi bi-twitter text-dark mx-1"></i></a>
+                    <a target="_blank" href="https://www.linkedin.com/in//davidson-ogaraku-a9547aa7/"><i class="bi bi-linkedin text-dark mx-1"></i></a>
+                    <a target="_blank" href="https://github.com/Rotex5"><i class="bi bi-github text-dark mx-1"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card bg-light">
+                <div class="card-body text-center">
+                    <img src="{% static 'img/guys/David3.png' %}" alt="" class="rounded-circle mb-3 w-50">
+                    <h3 class="card-title mb-3">
+                        David
+                    </h3>
+                    <p class="card-text">
+                        Meet our talented software engineer, who brings a unique blend of creativity and technical expertise to every project. With a background in architecture and construction, their attention to detail and problem-solving skills are unmatched.
+                    </p>
+                    <a target="_blank" href="https://twitter.com/David_Inkheart"><i class="bi bi-twitter text-dark mx-1"></i></a>
+                    <a target="_blank" href="https://www.linkedin.com/in/david-okolie/"><i class="bi bi-linkedin text-dark mx-1"></i></a>
+                    <a target="_blank" href="https://github.com/David-Inkheart"><i class="bi bi-github text-dark mx-1"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# --------- Sponsors ------------- #}
+
+<section id="sponsors" class="p-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Our Sponsors</h2>
+    <p class="lead pb-3">
+        This is a portfolio project which was built in 3weeks by a team of Software Engineers as part of the <a class="text-info text-decoration-none" href="https://www.alxafrica.com/software-engineering/" target="_blank">Fullstack Software Engineering program</a> sponsored by ALX - an innovative expression of ALG, in partnership with <a class="text-info text-decoration-none" href="https://www.holbertonschool.com/" target="_blank">Holberton School</a> - A coding School founded in Silicon Valley, California.
+    </p>
+    <div class="row py-4">
+      <div class="col-md-6 px-3">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <a target="_blank" href="https://algroup.org/">
+                <img src="{% static 'img/sponsors/ALG.png' %}" alt="Sponsor 1 Logo" class="img-fluid">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-4 px-3">
+          <div class="card-body text-center">
+            <a target="_blank" href="https://www.alxafrica.com/">
+                <img src="{% static 'img/sponsors/ALX.png' %}" alt="Sponsor 2 Logo" class="img-fluid w-50">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

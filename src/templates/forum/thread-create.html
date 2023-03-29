@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container py-4 my-1">
+    <div class="top-bar bg-info px-5 py-1">
+        <h1>
+            Forum
+        </h1>
+    </div>
+    <div class="main bg-light">
+      <div class="container">
+        <div class='col-md-6 offset-md-3 py-4'>
+            <h3>Create a new Thread!</h3>
+            <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-info">Submit</button>
+            </form>
+      </div>
+
+      </div>
+    </div>
+</div>
+{% endblock %}

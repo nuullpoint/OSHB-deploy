@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container pt-5">
+    {% block content_header %}
+      {% if user.is_authenticated %}
+      <p>
+        <a href="{% url 'blog-create' %}" class="btn btn-primary">Create a new blog</a>
+      </p>  
+      {% endif%}
+    {% endblock %}
+    <h1>All blogs</h1>
+
+    {% if blog_list %}
+    <ul>
+
+      {% for blog in blog_list %}
+      <li>
+        <a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a> ({{blog.publish_date|timesince}} ago) — <a href="{% url 'author-detail' blog.author.id %}">{{ blog.author }}</a>
+      </li>
+      {% endfor %}
+
+    </ul>
+
+    {% else %}
+      <p>There are no blogs.</p>
+    {% endif %}
+    
+</div>
+{% endblock %}
